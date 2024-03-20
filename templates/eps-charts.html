@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="#">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- 問老師:1.如果資料來源是從資料庫或讀取文檔，是不是也要引用jquery？引用jquery的目的是因為要使用ajax寫法嗎?
-                2.如果title要依據圖表資料的不同，用動態取可行嗎?
+                2.如果title和legend要依據圖表資料的不同，用動態取可行嗎?
                 3.最後網站要發佈才能讓使用者點網址連結進去看，對嗎? -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
     <link rel="stylesheet" href="../static/css/main.css">
@@ -17,14 +17,14 @@
 <body>
     <div id="container">
         <h1>前12大券商當月營收及試算EPS</h1>
-        <div id="pm25_high_site" class="banner">
+        <div id="eps_high_company" class="banner">
             N/A
         </div>
-        <div id="pm25_high_value" class="value"> EPS :數值</div>
-        <div id="pm25_low_site" class="banner">
+        <div id="eps_high_value" class="value"> EPS :數值</div><br>
+        <div id="eps_low_company" class="banner">
             N/A
         </div>
-        <div id="pm25_low_value" class="value"> EPS :數值</div>
+        <div id="eps_low_value" class="value"> EPS :數值</div>
     </div>
 
     <!-- 繪製區域 -->

@@ -12,7 +12,11 @@ function drawEPS() {
             type: "GET",
             dataType: "json",
             success: (result) => {
-                // console.log(result);
+                $("#eps_high_company").text(result["highest"]["company"]);
+                $("#eps_high_value").text(result["highest"]["current_EPS"]);
+                // 待補本公司和
+
+
                 // 繪製對應區塊並給予必要參數
                 drawChat(myChart, "當月試算EPS", "本月稅後EPS", result["company"], result["current_EPS"])
             }
@@ -27,7 +31,7 @@ function drawChat(chart, title, legend, xData, yData) {
         },
         tooltip: {},
         legend: {
-            data: legend
+            data: [legend]
         },
         xAxis: {
             data: xData
