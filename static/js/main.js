@@ -3,8 +3,18 @@
 // 取得主繪製區塊
 const chart1 = echarts.init(document.getElementById('main'));
 const chart2 = echarts.init(document.getElementById('acc'));
+const chart3 = echarts.init(document.getElementById('com'));
+
+// select選擇option時的監聽
+$("#select_county").change(() => {
+    com = $("select_county").val();
+    console.log(com);
+});
+
+
 // 呼叫後端資料跟繪製
-drawEPS();
+// 繪製累計EPS
+drawAccEPS();
 
 function drawAccEPS() {
     chart2.showLoading();
@@ -42,6 +52,8 @@ function drawAccEPS() {
 
 
 // 取得後端資料
+// 繪製當月EPS
+drawEPS();
 function drawEPS() {
     chart1.showLoading();
     $.ajax(
@@ -75,8 +87,7 @@ function drawEPS() {
     )
 }
 
-// 繪製累計EPS
-drawAccEPS();
+
 function drawChat(chart, title, legend, xData, yData) {
     // 指定圖表的配置項目和數據
     let option = {
@@ -102,7 +113,6 @@ function drawChat(chart, title, legend, xData, yData) {
     // 使用剛指定的配置項目和數據顯示圖表。
     chart.setOption(option);
 }
-
 
 
 

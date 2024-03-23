@@ -27,6 +27,28 @@ def get_acc_eps():
     return acc_columns, acc_values, acc_target
 
 
+def get_com():
+    global df
+    if df is None:
+        df = pd.read_excel(path)
+        df = round(df, 2).dropna()
+    coms = df["券商名稱"].unique()
+    return coms
+
+
+def get_com_eps(com):
+    global df
+    if df is None:
+        df = pd.read_excel(path)
+        df = round(df, 2).dropna()
+        df1 = df.groupby("coms").get_group(coms)
+    columns = df1.columns.tolist()
+    values = df1.values.tolist()
+
+    return columns, values
+
+
 if __name__ == "__main__":
     print(get_eps())
     print(get_acc_eps())
+    print(get_com())

@@ -1,15 +1,19 @@
-function drawChat(chart, title, legend, xData, yData){
+import * as echarts from 'echarts';
+
+let chartDom = document.getElementById('main');
+let myChart = echarts.init(chartDom, 'dark');
+let option;
 
 option = {
 title: {
-text: '本月EPS vs 累計EPS',
-subtext: '前十二大券商比較'
+text: 'Rainfall vs Evaporation',
+subtext: 'Fake Data'
 },
 tooltip: {
 trigger: 'axis'
 },
 legend: {
-data: ['本月EPS', '累計EPS']
+data: ['Rainfall', 'Evaporation']
 },
 toolbox: {
 show: true,
@@ -25,7 +29,7 @@ xAxis: [
 {
 type: 'category',
 // prettier-ignore
-data: xData
+data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 }
 ],
 yAxis: [
@@ -35,32 +39,38 @@ type: 'value'
 ],
 series: [
 {
-name: '本月EPS',
+name: 'Rainfall',
 type: 'bar',
-data: yData,
+data: [
+2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3
+],
 markPoint: {
 data: [
 { type: 'max', name: 'Max' },
 { type: 'min', name: 'Min' }
 ]
 },
-
+markLine: {
+data: [{ type: 'average', name: 'Avg' }]
+}
 },
 {
-name: '累計EPS',
+name: 'Evaporation',
 type: 'bar',
 data: [
-yData,
+2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3
+],
 markPoint: {
 data: [
 { name: 'Max', value: 182.2, xAxis: 7, yAxis: 183 },
 { name: 'Min', value: 2.3, xAxis: 11, yAxis: 3 }
 ]
 },
-
+markLine: {
+data: [{ type: 'average', name: 'Avg' }]
+}
 }
 ]
 };
-};
 
-chart.setOption(option)
+option && myChart.setOption(option);
