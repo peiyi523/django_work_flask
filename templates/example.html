@@ -1,0 +1,66 @@
+function drawChat(chart, title, legend, xData, yData){
+
+option = {
+title: {
+text: '本月EPS vs 累計EPS',
+subtext: '前十二大券商比較'
+},
+tooltip: {
+trigger: 'axis'
+},
+legend: {
+data: ['本月EPS', '累計EPS']
+},
+toolbox: {
+show: true,
+feature: {
+dataView: { show: true, readOnly: false },
+magicType: { show: true, type: ['line', 'bar'] },
+restore: { show: true },
+saveAsImage: { show: true }
+}
+},
+calculable: true,
+xAxis: [
+{
+type: 'category',
+// prettier-ignore
+data: xData
+}
+],
+yAxis: [
+{
+type: 'value'
+}
+],
+series: [
+{
+name: '本月EPS',
+type: 'bar',
+data: yData,
+markPoint: {
+data: [
+{ type: 'max', name: 'Max' },
+{ type: 'min', name: 'Min' }
+]
+},
+
+},
+{
+name: '累計EPS',
+type: 'bar',
+data: [
+yData,
+markPoint: {
+data: [
+{ name: 'Max', value: 182.2, xAxis: 7, yAxis: 183 },
+{ name: 'Min', value: 2.3, xAxis: 11, yAxis: 3 }
+]
+},
+
+}
+]
+};
+};
+
+chart.setOption(option)

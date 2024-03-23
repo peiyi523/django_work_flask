@@ -1,11 +1,49 @@
 
 
 // 取得主繪製區塊
-const myChart = echarts.init(document.getElementById('main'));
+const chart1 = echarts.init(document.getElementById('main'));
+const chart2 = echarts.init(document.getElementById('acc'));
 // 呼叫後端資料跟繪製
 drawEPS();
+
+function drawAccEPS() {
+    chart2.showLoading();
+    $.ajax(
+        {
+            url: "/acc-EPS-data",
+            type: "GET",
+            dataType: "json",
+            success: (acc_result) => {
+                $("#acc_eps_high_company").text(acc_result["acc_highest"]["acc_company"]);
+                $("#acc_eps_high_value").text(acc_result["acc_highest"]["acc_current_EPS"]);
+                $("#acc_eps_high_rank").text(acc_result["acc_highest"]["acc_current_rank"]);
+
+                $("#acc_eps_second_company").text(acc_result["acc_second"]["acc_company"]);
+                $("#acc_eps_second_value").text(acc_result["acc_second"]["acc_current_EPS"]);
+                $("#acc_eps_second_rank").text(acc_result["acc_second"]["acc_current_rank"]);
+
+                // 本公司
+                $("#acc_eps_point_company").text(acc_result["acc_point"]["acc_company"]);
+                $("#acc_eps_point_value").text(acc_result["acc_point"]["acc_current_EPS"]);
+                $("#acc_eps_point_rank").text(acc_result["acc_point"]["acc_current_rank"]);
+
+                // 繪製對應區塊並給予必要參數
+                drawChat(chart2, "累計EPS", "累計稅後EPS", acc_result["acc_company"], acc_result["acc_current_EPS"])
+                chart2.hideLoading();
+            },
+            error: () => {
+                alert("資料讀取失敗，請洽佩宜!")
+                chart2.hideLoading();
+            }
+        }
+    )
+}
+
+
+
 // 取得後端資料
 function drawEPS() {
+    chart1.showLoading();
     $.ajax(
         {
             url: "/current-EPS-data",
@@ -26,11 +64,19 @@ function drawEPS() {
                 $("#eps_point_rank").text(result["point"]["current_rank"]);
 
                 // 繪製對應區塊並給予必要參數
-                drawChat(myChart, "當月試算EPS", "本月稅後EPS", result["company"], result["current_EPS"])
+                drawChat(chart1, "當月EPS", "本月稅後EPS", result["company"], result["current_EPS"])
+                chart1.hideLoading();
+            },
+            error: () => {
+                alert("資料讀取失敗，請洽佩宜!")
+                chart1.hideLoading();
             }
         }
     )
 }
+
+// 繪製累計EPS
+drawAccEPS();
 function drawChat(chart, title, legend, xData, yData) {
     // 指定圖表的配置項目和數據
     let option = {
@@ -56,3 +102,7 @@ function drawChat(chart, title, legend, xData, yData) {
     // 使用剛指定的配置項目和數據顯示圖表。
     chart.setOption(option);
 }
+
+
+
+
