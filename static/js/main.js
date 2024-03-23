@@ -14,9 +14,16 @@ function drawEPS() {
             success: (result) => {
                 $("#eps_high_company").text(result["highest"]["company"]);
                 $("#eps_high_value").text(result["highest"]["current_EPS"]);
-                // 待補本公司
-                // $("#eps_low_company").text(result["company_rank"]["company"]);
-                // $("#eps_low_value").text(result["company_rank"]["current_EPS"]);
+                $("#eps_high_rank").text(result["highest"]["current_rank"]);
+
+                $("#eps_second_company").text(result["second"]["company"]);
+                $("#eps_second_value").text(result["second"]["current_EPS"]);
+                $("#eps_second_rank").text(result["second"]["current_rank"]);
+
+                // 本公司
+                $("#eps_point_company").text(result["point"]["company"]);
+                $("#eps_point_value").text(result["point"]["current_EPS"]);
+                $("#eps_point_rank").text(result["point"]["current_rank"]);
 
                 // 繪製對應區塊並給予必要參數
                 drawChat(myChart, "當月試算EPS", "本月稅後EPS", result["company"], result["current_EPS"])

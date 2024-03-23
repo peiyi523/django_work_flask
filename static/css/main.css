@@ -26,3 +26,13 @@ body {
     border-radius: 5px;
     margin-bottom: 5px;
 }
+
+.rank {
+    display: inline-block;
+    background-color: pink;
+    color: navy;
+    font-size: 24px;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}

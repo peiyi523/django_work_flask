@@ -6,7 +6,9 @@ def get_eps():
     df = round(df, 2).dropna()
     columns = df.columns.tolist()
     values = df.values.tolist()
-    return columns, values
+    key = "統一證券"
+    target = [value for value in values if value[0] == key]
+    return columns, values, target
 
 
 if __name__ == "__main__":
