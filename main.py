@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from datetime import datetime
-from eps import get_eps, get_acc_eps, get_com, get_com_eps
+from eps import get_eps, get_acc_eps, get_coms, get_com_eps
 import json
 
 app = Flask(__name__)
@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route("/current-EPS-charts")
 def current_EPS_charts():
-    coms = get_com()
+    coms = get_coms()
     return render_template("eps-charts.html", coms=coms)
 
 
@@ -92,20 +92,19 @@ def current_EPS_data():
     return result
 
 
-@app.route("/com-EPS-data/<com>", methods=["GET"])  # 如果是很私密的資料要改成POST
-def com_EPS_data():
-    columns, values = get_com_eps()
+@app.route("/com-EPS-data/<com>")
+def com_EPS_data(com):
+    columns, values = get_com_eps(com)
+    capital = [value[1] for value in values]
     gains = [value[2] for value in values]
     pre_gains = [value[3] for value in values]
     acc_gains = [value[9] for value in values]
-    acc_gains = [value[10] for value in values]
 
     result = json.dumps(
         {
+            "capital": capital,
             "gains": gains,
             "pre_gains": pre_gains,
-            "acc_gains": acc_gains,
-            "acc_gains": acc_gains,
             "acc_gains": acc_gains,
         },
         ensure_ascii=False,
@@ -120,7 +119,7 @@ def eps_table():
     return render_template("eps.html", columns=columns, values=values)
 
 
-print(current_EPS_data())
+# print(current_EPS_data())
 
 
 app.run(debug=True)

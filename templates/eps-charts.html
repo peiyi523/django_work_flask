@@ -59,12 +59,12 @@
     <div id="main" style="width: 1600PX;height:400px;"></div>
     <div id="acc" style="width: 1600PX;height:400px;"></div>
     <h3>各券商營收資料</h3>
-    <select name="select_county" id="select_county">
+    <select name="select_company" id="select_company">
         {% for com in coms %}
         <option value="{{com}}">{{com}}</option>
         {% endfor %}
     </select>
-    <div id="com" style="width: 1600PX;height:400px;"></div>
+    <div id="coms" style="width: 1600PX;height:400px;"></div>
 
     <a href="/">回首頁</a>
     <script src="../static/js/main.js">

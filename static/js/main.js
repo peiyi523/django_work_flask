@@ -3,13 +3,36 @@
 // 取得主繪製區塊
 const chart1 = echarts.init(document.getElementById('main'));
 const chart2 = echarts.init(document.getElementById('acc'));
-const chart3 = echarts.init(document.getElementById('com'));
+const chart3 = echarts.init(document.getElementById('coms'));
 
 // select選擇option時的監聽
-$("#select_county").change(() => {
-    com = $("select_county").val();
+$("#select_company").change(() => {
+    com = $("#select_company").val();
     console.log(com);
 });
+
+function drawComEPS(com) {
+    chart3.showLoading();
+    $.ajax(
+        {
+            url: `/com-EPS-data/${com}`,
+            type: "GET",
+            dataType: "json",
+            success: (result) => {
+                // 繪製對應區塊並給予必要參數
+                drawChat(chart3, "資本額", "累計稅後EPS", acc_result["acc_company"], acc_result["acc_current_EPS"])
+                chart3.hideLoading();
+            },
+            error: () => {
+                alert("資料讀取失敗，請洽佩宜!")
+                chart3.hideLoading();
+            }
+        }
+    )
+}
+
+
+
 
 
 // 呼叫後端資料跟繪製
