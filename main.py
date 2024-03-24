@@ -92,24 +92,24 @@ def current_EPS_data():
     return result
 
 
-@app.route("/com-EPS-data/<com>")
-def com_EPS_data(com):
-    columns, values = get_com_eps(com)
-    capital = [value[1] for value in values]
-    gains = [value[2] for value in values]
-    pre_gains = [value[3] for value in values]
-    acc_gains = [value[9] for value in values]
+# @app.route("/com-EPS-data/<com>")
+# def com_EPS_data(com):
+#     columns, values = get_com_eps(com)
+#     capital = [value[1] for value in values]
+#     gains = [value[2] for value in values]
+#     pre_gains = [value[3] for value in values]
+#     acc_gains = [value[9] for value in values]
 
-    result = json.dumps(
-        {
-            "capital": capital,
-            "gains": gains,
-            "pre_gains": pre_gains,
-            "acc_gains": acc_gains,
-        },
-        ensure_ascii=False,
-    )
-    return result
+#     result = json.dumps(
+#         {
+#             "capital": capital,
+#             "gains": gains,
+#             "pre_gains": pre_gains,
+#             "acc_gains": acc_gains,
+#         },
+#         ensure_ascii=False,
+#     )
+#     return result
 
 
 @app.route("/")
