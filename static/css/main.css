@@ -37,3 +37,17 @@ body {
     border-radius: 5px;
     margin-bottom: 5px;
 }
+
+#container {
+    color: cornflowerblue;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+
+}
+
+a {
+    color: red;
+    font-size: 24px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+}

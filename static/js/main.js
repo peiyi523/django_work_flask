@@ -130,7 +130,21 @@ function drawChat(chart, title, legend, xData, yData, color = '#87CEEB') {
             data: [legend]
         },
         xAxis: {
-            data: xData
+            data: xData,
+            axisLabel: {
+                formatter: function (value) {
+                    if (value === "統一證券") {
+                        return '{a|' + value + '}';
+                    } else {
+                        return value;
+                    }
+                },
+                rich: {
+                    a: {
+                        color: 'red'
+                    }
+                }
+            }
         },
         yAxis: {},
         series: [
