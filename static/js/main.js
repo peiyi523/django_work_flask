@@ -133,7 +133,7 @@ function drawChat(chart, title, legend, xData, yData, color = '#87CEEB') {
             data: xData,
             axisLabel: {
                 formatter: function (value) {
-                    if (value === "統一證券") {
+                    if (value === "統一") {
                         return '{a|' + value + '}';
                     } else {
                         return value;
@@ -155,7 +155,7 @@ function drawChat(chart, title, legend, xData, yData, color = '#87CEEB') {
                 itemStyle: {
                     normal: {
                         color: function (params) {
-                            if (params.name === "統一證券") {
+                            if (params.name === "統一") {
                                 return "#FFDEAD";
                             } else {
                                 return color;

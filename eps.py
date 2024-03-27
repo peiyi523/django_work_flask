@@ -2,7 +2,7 @@ import pandas as pd
 
 path = "C:/Users/PEIYI/Dropbox/PC/Desktop/django/參考資料2.xlsx"
 df = None
-key = "統一證券"
+key = "統一"
 
 
 def get_eps():
